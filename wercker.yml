@@ -1,22 +1,10 @@
-box: wercker/android@2.0.0
+box: yatatsu/android:0.1
 build:
   steps:
     - script:
-        name: show base information
+        name: run gradle
         code: |
-          gradle -v
-          echo $ANDROID_HOME
-          echo $ANDROID_SDK_VERSION
-          echo $ANDROID_BUILD_TOOLS
-          echo $ANDROID_UPDATE_FILTER
-    - android-sdk-update:
-        filter: platform-tools,extra-android-m2repository,extra-android-support
-    - setup-android-emulator:
-        target: android-24
-    - script:
-        name: run gradle clean check
-        code: |
-          gradle --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR
+          ./gradlew clean check assembleDebug
   after-steps:
     - script:
         name: inspect build result
