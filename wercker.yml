@@ -1,5 +1,9 @@
-box: yatatsu/android:0.1
 build:
+  box:
+    id: yatatsu/android
+    username: $USERNAME
+    password: $PASSWORD
+    tag: 0.1
   steps:
     - script:
         name: run gradle
